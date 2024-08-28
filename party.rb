@@ -7,11 +7,11 @@ class Party
     @room = nil
   end
 
-  def assign_room(room)
+  def allocate_room(room)
     @room = room
   end
 
-  def room_assigned?
-    !@room.nil?
-  end
+  #def room_assigned?
+ #   !@room.nil?
+ # end
 end
