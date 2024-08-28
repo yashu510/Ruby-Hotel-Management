@@ -10,8 +10,4 @@ class Party
   def allocate_room(room)
     @room = room
   end
-
-  #def room_assigned?
- #   !@room.nil?
- # end
 end
