@@ -6,3 +6,4 @@ class Guest
     @party = party
   end
 end
+
