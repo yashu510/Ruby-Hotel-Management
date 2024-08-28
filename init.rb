@@ -3,44 +3,38 @@ require_relative 'room'
 require_relative 'party'
 require_relative 'guest'
 
-# Check if the user provided a number of rooms as an argument
+# Get number of rooms as an argument in input
 if ARGV.length < 1
-  puts "Usage: ruby init.rb <number_of_rooms>"
+  puts "Please enter number of rooms in the hotel.Hotel "
   exit
 end
 
-# Get the number of rooms from the command-line arguments
-number_of_rooms = ARGV[0].to_i
+# total number of rooms 
+total_rooms = ARGV[0].to_i
 
-# Initialize the hotel with the specified number of rooms
-hotel = Hotel.new(number_of_rooms)
+# Initialize the hotel with total rooms passed.
+hotel = Hotel.new(total_rooms)
 
-# Create parties with guests and names
-party1 = Party.new("Smith Family", [Guest.new("Alice", party1), Guest.new("Bob", party1)])
-party2 = Party.new("Jones Family", [Guest.new("Charlie", party2)])
+# Initialize Party and assign a Party Name along with Guest Details
+party_1 = Party.new("Gadde Family", [Guest.new("Yaswanth", party_1), Guest.new("Nikhil", party_1)])
+party_2 = Party.new("Vinnakota Family", [Guest.new("Bunny", party_2)])
 
-# Assign rooms to parties if available
-if hotel.available_room
-  room1 = hotel.available_room
-  room1.assign_party(party1)
+# Check room availabilty and assign parties a room.
+if hotel.avail_room
+  room1 = hotel.avail_room
+  room1.allocate_party(party_1)
 end
 
-if hotel.available_room
-  room2 = hotel.available_room
-  room2.assign_party(party2)
+if hotel.avail_room
+  room2 = hotel.avail_room
+  room2.allocate_party(party_2)
 end
 
-
-# Check hotel status
-puts " Total Rooms for this Hotel : #{number_of_rooms}"
-puts "No vacancies " if hotel.no_vacancies?
-
-puts "Rooms with parties: #{hotel.list_rooms_without_parties.size}"
-
-puts "Parties without rooms: #{hotel.list_parties_without_rooms.size}"
-
+# Print the Hotel Details
+puts " Total Rooms in Hotel : #{total_rooms}"
+puts "No Rooms are Available " if hotel.no_rooms?
+puts "Rooms with parties: #{hotel.get_rooms_with_parties.size}"
+puts "Parties without rooms: #{hotel.get_parties_without_rooms.size}"
 
 # List all rooms with their assigned party names
-hotel.list_rooms_with_parties
-
-
+hotel.get_partyDetails_from_rooms
