@@ -1,1 +1,1 @@
-# yashu510-Ruby-Hotel-Management
+Ruby-Hotel-Management
