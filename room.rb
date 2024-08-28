@@ -5,21 +5,17 @@ class Room
     @party = nil
   end
 
-  def assign_party(party)
+  def allocate_party(party)
     if @party.nil?
       @party = party
-      party.assign_room(self) # Make sure the party knows which room it's assigned to
+      party.allocate_room(self) 
     else
-      raise "Room already occupied by a party."
+      raise "Room is already occupied."
     end
   end
 
-  def remove_party
-    @party = nil
-  end
-
-  # New method to get the party name
+  #  method to get the party name
   def party_name
-    @party ? @party.name : "No party assigned"
+    @party ? @party.name : "Vacant"
   end
 end
