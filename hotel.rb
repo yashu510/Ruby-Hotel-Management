@@ -7,53 +7,31 @@ class Hotel
   end
   
 
-  # Check-in a party to the first available room or add to unassigned list
-  def check_in(party)
-    available_room = @rooms.find { |room| !room.occupied? }
-
-    if avail_room
-      avail_room.assign_party(party)
-      puts "Checked in party of #{party.size} to room #{avail_room.number}."
-    else
-      @unassigned_parties << party
-      puts "No available rooms. Party of #{party.size} added to the waiting list."
-    end
-  end
-
-    # Check-out a party from a specific room
-    def check_out(room_number)
-      room = @rooms.find { |r| r.number == room_number }
-  
-      if room
-        room.vacate
-        puts "Party from room #{room_number} is now on the waiting list."
-        @unassigned_parties << room.party if room.party
-      else
-        puts "Room #{room_number} does not exist."
-      end
-    end
-
-    # List the status of all rooms
   def list_rooms
+    if @rooms.empty?
+      puts "There are no rooms in the hotel."
+      return
+    end
+  
     @rooms.each do |room|
       if room.occupied?
-        party_names = room.party.guests.map(&:name).join(", ")
-        puts "Room #{room.number}: Occupied by party with guests: #{party_names}"
+        puts "Room #{room.number}: Occupied  with guests"
       else
         puts "Room #{room.number}: Vacant"
       end
     end
   end
   
-# Add a new room to the hotel
+  
+# Add room
 def add_room
-  new_room_number = @rooms.size + 1
-  new_room = Room.new(new_room_number)
+  add_room_number = @rooms.size + 1
+  new_room = Room.new(add_room_number)
   @rooms << new_room
-  puts "Added room #{new_room_number}."
+  puts "Added room #{add_room_number}."
 end
 
-# Remove a room from the hotel, if it's vacant
+# Delete Room.
 def remove_room(room_number)
   room = @rooms.find { |r| r.number == room_number }
 
