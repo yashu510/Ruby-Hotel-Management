@@ -10,23 +10,13 @@ class Room
     !@party.nil?
   end
 
-  def assign_party(party)
-    if occupied?
-      puts "Room #{number} is already occupied."
-    else
-      @party = party
-      party.assign_room
-    end
-  end
-
-
   def vacate
     if occupied?
       puts "Room #{number} is now vacant."
       @party.remove_room
       @party = nil
     else
-      puts "Room #{number} is already vacant."
+      puts "Room #{number} is  vacant."
     end
   end
 
