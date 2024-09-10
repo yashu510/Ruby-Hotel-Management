@@ -1,9 +1,8 @@
 class Guest
   attr_accessor :name, :party
 
-  def initialize(name, party)
+  def initialize(name)
     @name = name
-    @party = party
+   # @party = party
   end
 end
-
