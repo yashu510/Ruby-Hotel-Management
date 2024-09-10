@@ -1,5 +1,5 @@
 class Party
-  attr_accessor :name, :guests, :room
+  attr_reader :guests, :has_room
 
   def initialize(name, guests = [])
     @name = name
@@ -10,4 +10,17 @@ class Party
   def allocate_room(room)
     @room = room
   end
+
+  def size
+    @guests.size
+  end
+
+  def assign_room
+    @has_room = true
+  end
+
+  def remove_room
+    @has_room = false
+  end
+
 end
