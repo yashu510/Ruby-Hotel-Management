@@ -3,20 +3,13 @@ require_relative 'room'
 require_relative 'party'
 require_relative 'guest'
 
-
-require_relative 'hotel'
-require_relative 'room'
-require_relative 'party'
-require_relative 'guest'
-
-# Initialize the hotel with a dynamic number of rooms
-puts "Welcome to the Hotel Management System!"
-puts "Please enter the number of rooms to initialize the hotel:"
-num_of_rooms = gets.chomp.to_i
-hotel = Hotel.new(num_of_rooms)
+# Initialize the hotel through the user action
+puts "Please enter the number of rooms for the hotel:"
+number_of_rooms = gets.chomp.to_i
+hotel = Hotel.new(number_of_rooms)
 
 loop do
-  puts "\n--- Hotel Management Menu ---"
+  puts "\n--- Hotel Functionlity  ---"
   
   puts "1. List all rooms"
   puts "2. Add a new room"
@@ -28,28 +21,8 @@ loop do
   choice = gets.chomp.to_i
 
   case choice
-  when 4
-    puts "Enter the number of guests in the party:"
-    num_guests = gets.chomp.to_i
-    guests = []
-    num_guests.times do |i|
-      print "Enter the name of guest #{i + 1}: "
-      guest_name = gets.chomp
-      guests << Guest.new(guest_name)
-    end
-    party = Party.new(guests)
-    hotel.check_in(party)
-
-  when 5
-    puts "Enter the room number to check out:"
-    room_number = gets.chomp.to_i
-    hotel.check_out(room_number)
-
   when 1
     hotel.list_rooms
-
-  when 4
-    hotel.list_unassigned_parties
 
   when 2
     hotel.add_room
@@ -59,12 +32,24 @@ loop do
     room_number = gets.chomp.to_i
     hotel.remove_room(room_number)
 
+
+  when 4
+    puts "Party is checked-in with  Guest:"
+    
+    ##hotel.get_partyDetails_from_rooms(party)
+
+  when 5
+    puts "Enter the room number to check out:"
+    room_number = gets.chomp.to_i
+    puts "Room #{room_number} number is checked out:"
+ 
+
   when 6
-    puts "Exiting the Hotel Management System. Goodbye!"
+    puts "Exiting the Hotel Application."
     break
 
   else
-    puts "Invalid option. Please select a valid option."
+    puts "Invalid selection. Please choose a valid selection."
   end
 
 end
